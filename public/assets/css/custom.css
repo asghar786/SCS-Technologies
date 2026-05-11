@@ -14,18 +14,23 @@
     --box-shadow-2: 0px 4px 25px rgba(90, 149, 207, 0.15);
 }
 
+/* Remove the blue right-panel background from header-3 — make it white */
+.header-3::before {
+    background-color: #fff !important;
+}
+
 /* Remove the decorative CSS triangle from the header-3 button area */
 .header-3 .header-button::before,
 .header-3 .header-main .header-right .header-button::before {
     display: none !important;
 }
 
-/* Header “Request for Call” button — solid #5A95CF, white text, hover same color */
+/* Header “Request for Call” button — solid #5A95CF, white text, 1px border, hover same color */
 .header-3 .header-button .theme-btn,
 .header-3 .header-button .theme-btn.bg-white {
     background-color: #5A95CF !important;
     color: #fff !important;
-    border: 2px solid #3D7AB8 !important;
+    border: 1px solid #3D7AB8 !important;
 }
 .header-3 .header-button .theme-btn::before,
 .header-3 .header-button .theme-btn::after {
