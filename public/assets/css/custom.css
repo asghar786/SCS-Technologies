@@ -16,32 +16,45 @@
 
 /* Vertically center everything in the header top bar */
 .header-top-section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 42px;
     display: flex;
     align-items: center;
 }
-.header-top-section .container {
+.header-top-section > .container {
     display: flex;
     align-items: center;
+    min-height: 42px;
 }
 .header-top-wrapper {
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
+    min-height: 42px;
     width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .header-top-wrapper .contact-list {
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 .header-top-wrapper .contact-list li {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0;
+    padding: 0;
     line-height: 1;
 }
-.header-top-wrapper .contact-list li i,
-.header-top-wrapper .contact-list li a,
-.header-top-wrapper .contact-list li span {
+.header-top-wrapper .contact-list li i {
     line-height: 1;
-    vertical-align: middle;
-    margin-right: 0;
+    margin-right: 8px;
+    margin-bottom: 0;
+    position: relative;
+    top: 0;
 }
 
 /* Remove the blue right-panel background from header-3 — make it white */
