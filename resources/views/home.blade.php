@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="content">
                                         <span>Call Us Now</span>
-                                        <h5><a href="tel:+19543625193">+1 (954) 362-5193</a></h5>
+                                        <h5><a href="{{ $sitePhoneTel }}">{{ $sitePhone }}</a></h5>
                                     </div>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                         </div>
                         <div class="content">
                             <span>Call Us Now</span>
-                            <h4><a href="tel:+19543625193">+1 (954) 362-5193</a></h4>
+                            <h4><a href="{{ $sitePhoneTel }}">{{ $sitePhone }}</a></h4>
                         </div>
                     </div>
                     <a href="{{ route('contact') }}" class="theme-btn bg-white">
