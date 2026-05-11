@@ -2,6 +2,7 @@
 @section('title', 'Contact Us')
 
 @section('content')
+@include('partials.page-hero', ['title' => 'Contact Us', 'crumbs' => [['label'=>'Home','url'=>route('home')],['label'=>'Contact Us','url'=>'']]])
 
     <!-- Contact Section Start -->
     <section class="contact-section fix section-padding">

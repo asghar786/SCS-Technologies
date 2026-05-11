@@ -121,6 +121,17 @@
     box-shadow: none !important;
 }
 
+/* Page hero — reduce default 180px padding to a tighter 100px */
+.breadcrumb-wrapper .page-heading {
+    padding: 100px 0 !important;
+}
+@media (max-width: 991px) {
+    .breadcrumb-wrapper .page-heading { padding: 70px 0 !important; }
+}
+@media (max-width: 575px) {
+    .breadcrumb-wrapper .page-heading { padding: 50px 0 !important; }
+}
+
 /* ── Footer light background + dark text ─────────────────────────────── */
 .footer-bg {
     background-color: #e5e5e5 !important;
