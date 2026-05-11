@@ -84,9 +84,9 @@
     top: 0;
 }
 
-/* Remove the blue right-panel background from header-3 — make it white */
+/* Match the ::before right-panel to the nav bar colour */
 .header-3::before {
-    background-color: #fff !important;
+    background-color: #eaeaea !important;
 }
 
 /* Remove the decorative CSS triangle from the header-3 button area */
@@ -111,10 +111,10 @@
     color: #fff !important;
 }
 
-/* Main nav bar — full-width light grey background with bottom shadow */
+/* Main nav bar — full-width light grey background, no shadow */
 #header-sticky.header-3 {
     background-color: #eaeaea !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10) !important;
+    box-shadow: none !important;
 }
 .header-3 .header-main {
     background-color: transparent !important;
