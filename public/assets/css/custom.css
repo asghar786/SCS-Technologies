@@ -111,6 +111,12 @@
     color: #fff !important;
 }
 
+/* Main nav bar — light grey background with bottom shadow */
+.header-3 .header-main {
+    background-color: #eaeaea !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10) !important;
+}
+
 /* Footer nav lists — reduce item gap by 25% (20px → 15px), applied equally to both columns */
 .widget.widget_nav_menu.footer-widget .menu-all-pages-container .menu li {
     margin-bottom: 15px;
