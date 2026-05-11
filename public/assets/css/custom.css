@@ -121,6 +121,14 @@
     box-shadow: none !important;
 }
 
+/* Footer contact bar — vertical divider between items (matches CTA banner style) */
+.cta-wrapper-2 .header-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+}
+
 /* Footer nav lists — reduce item gap by 25% (20px → 15px), applied equally to both columns */
 .widget.widget_nav_menu.footer-widget .menu-all-pages-container .menu li {
     margin-bottom: 15px;
