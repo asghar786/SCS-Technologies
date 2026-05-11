@@ -1,0 +1,15 @@
+/* SCS Technologies — Brand Color Overrides */
+:root {
+    --theme: #384BFF;
+    --theme2: #18185E;
+    --theme-color3: #F98600;
+    --header: #0F0D1D;
+    --bg2: #18185E;
+    --border2: #242449;
+    --border3: #5262FF;
+    --smoke-color2: #CFD3FC;
+    --title-color: #0F0D1D;
+    --text-color: #445375;
+    --border-color: #D4DCFF;
+    --box-shadow-2: 0px 4px 25px rgba(56, 75, 255, 0.1);
+}
