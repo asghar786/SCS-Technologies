@@ -121,6 +121,58 @@
     box-shadow: none !important;
 }
 
+/* ── Footer light background + dark text ─────────────────────────────── */
+.footer-bg {
+    background-color: #e5e5e5 !important;
+}
+/* Headings / widget titles */
+.footer-bg .widget_title,
+.footer-bg h1, .footer-bg h2, .footer-bg h3,
+.footer-bg h4, .footer-bg h5, .footer-bg h6 {
+    color: #111111 !important;
+}
+/* Body / paragraph text */
+.footer-bg p, .footer-bg .about-text,
+.footer-bg .checklist ul li,
+.footer-bg .text-white {
+    color: #333333 !important;
+}
+/* Nav menu links and chevron icons */
+.footer-bg .menu-all-pages-container .menu li a,
+.footer-bg .menu-all-pages-container .menu li a i {
+    color: #333333 !important;
+}
+.footer-bg .menu-all-pages-container .menu li a:hover,
+.footer-bg .menu-all-pages-container .menu li a:hover i {
+    color: var(--theme) !important;
+}
+/* Contact Us column links */
+.footer-bg .checklist a,
+.footer-bg .checklist a.text-white {
+    color: #333333 !important;
+}
+/* Social icons */
+.footer-bg .gt-social a {
+    color: #333333 !important;
+    border-color: #aaaaaa !important;
+}
+.footer-bg .gt-social a:hover {
+    color: #ffffff !important;
+    border-color: var(--theme) !important;
+    background-color: var(--theme) !important;
+}
+/* Footer bottom bar */
+.footer-bg .footer-copyright,
+.footer-bg .copyright-area {
+    background-color: #d0d0d0 !important;
+    color: #333333 !important;
+}
+.footer-bg .footer-copyright a,
+.footer-bg .copyright-area a {
+    color: #111111 !important;
+}
+/* ──────────────────────────────────────────────────────────────────────── */
+
 /* Footer CTA banner — suppress the white ::before overlay that belongs to the homepage version */
 .footer-cta-banner.cta-banner-2::before {
     display: none !important;
