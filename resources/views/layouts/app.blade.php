@@ -335,7 +335,7 @@
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-6 col-12">
-                            <div class="widget footer-widget wow fadeInUp" data-wow-delay="1.3s">
+                            <div class="widget widget_nav_menu footer-widget wow fadeInUp" data-wow-delay="1.3s">
                                 <h3 class="widget_title">Our Services</h3>
                                 <div class="menu-all-pages-container">
                                     <ul class="menu">

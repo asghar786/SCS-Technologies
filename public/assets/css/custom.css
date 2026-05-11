@@ -111,6 +111,11 @@
     color: #fff !important;
 }
 
+/* Footer nav lists — reduce item gap by 25% (20px → 15px), applied equally to both columns */
+.widget.widget_nav_menu.footer-widget .menu-all-pages-container .menu li {
+    margin-bottom: 15px;
+}
+
 /* Service card — round top corners of thumbnail to match card radius */
 .service-card-items .service-image img {
     border-radius: 10px 10px 0 0;
