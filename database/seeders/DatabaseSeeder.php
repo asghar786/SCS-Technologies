@@ -64,10 +64,13 @@ class DatabaseSeeder extends Seeder
             'seo_description'  => 'SCS Technologies is a MBE-certified telecom and IT infrastructure solutions provider. Structured cabling, Wi-Fi, surveillance, A/V, and web development. Est. 1999.',
             'seo_keywords'     => 'structured cabling, Wi-Fi network, access control, surveillance, audio visual, IT consulting, web development, MBE certified, Florida, telecom',
 
-            // Hero slide images
-            'hero_image_1'     => '',
-            'hero_image_2'     => '',
-            'hero_image_3'     => '',
+            // Hero slide images — desktop (1920×900) and mobile (768×1024)
+            'hero_image_1'        => '',
+            'hero_image_1_mobile' => '',
+            'hero_image_2'        => '',
+            'hero_image_2_mobile' => '',
+            'hero_image_3'        => '',
+            'hero_image_3_mobile' => '',
 
             // Branding
             'logo'             => '',

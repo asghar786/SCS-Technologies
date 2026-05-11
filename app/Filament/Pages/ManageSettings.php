@@ -65,31 +65,49 @@ class ManageSettings extends Page implements HasForms
                             TextInput::make('hero_title_1')->label('Title'),
                             TextInput::make('hero_subtitle_1')->label('Subtitle'),
                             FileUpload::make('hero_image_1')
-                                ->label('Background Image (1920×900)')
+                                ->label('Desktop Background (1920×900)')
                                 ->image()
                                 ->directory('hero-slides')
-                                ->helperText('Upload a JPG/PNG; it will be auto-converted to WebP 1920×900.')
-                                ->columnSpanFull(),
+                                ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
+                                ->columnSpan(1),
+                            FileUpload::make('hero_image_1_mobile')
+                                ->label('Mobile Background (768×1024)')
+                                ->image()
+                                ->directory('hero-slides')
+                                ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
+                                ->columnSpan(1),
                         ])->columns(2),
                         Section::make('Slide 2')->schema([
                             TextInput::make('hero_title_2')->label('Title'),
                             TextInput::make('hero_subtitle_2')->label('Subtitle'),
                             FileUpload::make('hero_image_2')
-                                ->label('Background Image (1920×900)')
+                                ->label('Desktop Background (1920×900)')
                                 ->image()
                                 ->directory('hero-slides')
-                                ->helperText('Upload a JPG/PNG; it will be auto-converted to WebP 1920×900.')
-                                ->columnSpanFull(),
+                                ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
+                                ->columnSpan(1),
+                            FileUpload::make('hero_image_2_mobile')
+                                ->label('Mobile Background (768×1024)')
+                                ->image()
+                                ->directory('hero-slides')
+                                ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
+                                ->columnSpan(1),
                         ])->columns(2),
                         Section::make('Slide 3')->schema([
                             TextInput::make('hero_title_3')->label('Title'),
                             TextInput::make('hero_subtitle_3')->label('Subtitle'),
                             FileUpload::make('hero_image_3')
-                                ->label('Background Image (1920×900)')
+                                ->label('Desktop Background (1920×900)')
                                 ->image()
                                 ->directory('hero-slides')
-                                ->helperText('Upload a JPG/PNG; it will be auto-converted to WebP 1920×900.')
-                                ->columnSpanFull(),
+                                ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
+                                ->columnSpan(1),
+                            FileUpload::make('hero_image_3_mobile')
+                                ->label('Mobile Background (768×1024)')
+                                ->image()
+                                ->directory('hero-slides')
+                                ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
+                                ->columnSpan(1),
                         ])->columns(2),
                     ]),
 
@@ -150,7 +168,13 @@ class ManageSettings extends Page implements HasForms
 
         foreach (['hero_image_1', 'hero_image_2', 'hero_image_3'] as $key) {
             if (!empty($data[$key])) {
-                $data[$key] = $this->convertToWebP($data[$key]);
+                $data[$key] = $this->convertToWebP($data[$key], 1920, 900);
+            }
+        }
+
+        foreach (['hero_image_1_mobile', 'hero_image_2_mobile', 'hero_image_3_mobile'] as $key) {
+            if (!empty($data[$key])) {
+                $data[$key] = $this->convertToWebP($data[$key], 768, 1024);
             }
         }
 
@@ -167,7 +191,7 @@ class ManageSettings extends Page implements HasForms
         Notification::make()->title('Settings saved successfully')->success()->send();
     }
 
-    private function convertToWebP(string $storagePath): string
+    private function convertToWebP(string $storagePath, int $targetW = 1920, int $targetH = 900): string
     {
         $fullPath = storage_path('app/public/' . $storagePath);
 

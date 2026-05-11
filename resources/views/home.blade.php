@@ -2,18 +2,39 @@
 
 @section('title', 'Home')
 
+@push('styles')
+@php
+    $mob1 = \App\Models\Setting::get('hero_image_1_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_1_mobile')) : null;
+    $mob2 = \App\Models\Setting::get('hero_image_2_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_2_mobile')) : null;
+    $mob3 = \App\Models\Setting::get('hero_image_3_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_3_mobile')) : null;
+@endphp
+<style>
+@media (max-width: 767px) {
+    .swiper-slide:nth-child(1) .hero-bg-desktop { background-image: url('{{ $mob1 ?? asset('assets/img/hero/hero-1.jpg') }}') !important; background-position: center center; }
+    .swiper-slide:nth-child(2) .hero-bg-desktop { background-image: url('{{ $mob2 ?? asset('assets/img/hero/hero-2.jpg') }}') !important; background-position: center center; }
+    .swiper-slide:nth-child(3) .hero-bg-desktop { background-image: url('{{ $mob3 ?? asset('assets/img/hero/hero-3.jpg') }}') !important; background-position: center center; }
+}
+</style>
+@endpush
+
 @section('content')
 
     @php
-        $h1bg  = \App\Models\Setting::get('hero_image_1') ? asset('storage/' . \App\Models\Setting::get('hero_image_1')) : asset('assets/img/hero/hero-1.jpg');
-        $h2bg  = \App\Models\Setting::get('hero_image_2') ? asset('storage/' . \App\Models\Setting::get('hero_image_2')) : asset('assets/img/hero/hero-2.jpg');
-        $h3bg  = \App\Models\Setting::get('hero_image_3') ? asset('storage/' . \App\Models\Setting::get('hero_image_3')) : asset('assets/img/hero/hero-3.jpg');
-        $ht1   = \App\Models\Setting::get('hero_title_1',    'Trusted Telecom & IT Infrastructure Solutions');
-        $hs1   = \App\Models\Setting::get('hero_subtitle_1', 'Structured Cabling · Wi-Fi · Security · A/V · Web Development');
-        $ht2   = \App\Models\Setting::get('hero_title_2',    'MBE-Certified · Nationwide Coverage');
-        $hs2   = \App\Models\Setting::get('hero_subtitle_2', 'Delivering projects on budget and on time since 1999.');
-        $ht3   = \App\Models\Setting::get('hero_title_3',    'Complete Web & Software Solutions');
-        $hs3   = \App\Models\Setting::get('hero_subtitle_3', 'Custom websites, ERP systems, mobile apps and more.');
+        // Desktop backgrounds
+        $h1bg   = \App\Models\Setting::get('hero_image_1') ? asset('storage/' . \App\Models\Setting::get('hero_image_1')) : asset('assets/img/hero/hero-1.jpg');
+        $h2bg   = \App\Models\Setting::get('hero_image_2') ? asset('storage/' . \App\Models\Setting::get('hero_image_2')) : asset('assets/img/hero/hero-2.jpg');
+        $h3bg   = \App\Models\Setting::get('hero_image_3') ? asset('storage/' . \App\Models\Setting::get('hero_image_3')) : asset('assets/img/hero/hero-3.jpg');
+        // Mobile backgrounds — fall back to desktop if not set
+        $h1mob  = \App\Models\Setting::get('hero_image_1_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_1_mobile')) : $h1bg;
+        $h2mob  = \App\Models\Setting::get('hero_image_2_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_2_mobile')) : $h2bg;
+        $h3mob  = \App\Models\Setting::get('hero_image_3_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_3_mobile')) : $h3bg;
+        // Titles & subtitles
+        $ht1    = \App\Models\Setting::get('hero_title_1',    'Trusted Telecom & IT Infrastructure Solutions');
+        $hs1    = \App\Models\Setting::get('hero_subtitle_1', 'Structured Cabling · Wi-Fi · Security · A/V · Web Development');
+        $ht2    = \App\Models\Setting::get('hero_title_2',    'MBE-Certified · Nationwide Coverage');
+        $hs2    = \App\Models\Setting::get('hero_subtitle_2', 'Delivering projects on budget and on time since 1999.');
+        $ht3    = \App\Models\Setting::get('hero_title_3',    'Complete Web & Software Solutions');
+        $hs3    = \App\Models\Setting::get('hero_subtitle_3', 'Custom websites, ERP systems, mobile apps and more.');
     @endphp
 
     <!-- Hero Section Start -->
@@ -30,7 +51,7 @@
 
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ $h1bg }}');">
+                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h1bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -76,7 +97,7 @@
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ $h2bg }}');">
+                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h2bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -122,7 +143,7 @@
 
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ $h3bg }}');">
+                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h3bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
