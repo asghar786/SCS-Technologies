@@ -14,7 +14,7 @@
     --box-shadow-2: 0px 4px 25px rgba(90, 149, 207, 0.15);
 }
 
-/* Mobile top bar — hide social, shrink font, keep email+phone on one line */
+/* Mobile top bar — hide social, email left / phone right, 13px font */
 @media (max-width: 991px) {
     .header-top-section {
         display: flex !important;
@@ -25,17 +25,19 @@
         display: none !important;
     }
     .header-top-wrapper .contact-list {
-        gap: 12px !important;
+        width: 100%;
+        justify-content: space-between !important;
         flex-wrap: nowrap !important;
+        gap: 0 !important;
     }
     .header-top-wrapper .contact-list li,
     .header-top-wrapper .contact-list li a {
-        font-size: 11px !important;
+        font-size: 13px !important;
         white-space: nowrap;
     }
     .header-top-wrapper .contact-list li i {
-        font-size: 10px !important;
-        margin-right: 4px !important;
+        font-size: 11px !important;
+        margin-right: 5px !important;
     }
 }
 
