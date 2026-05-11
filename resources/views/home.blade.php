@@ -4,6 +4,18 @@
 
 @section('content')
 
+    @php
+        $h1bg  = \App\Models\Setting::get('hero_image_1') ? asset('storage/' . \App\Models\Setting::get('hero_image_1')) : asset('assets/img/hero/hero-1.jpg');
+        $h2bg  = \App\Models\Setting::get('hero_image_2') ? asset('storage/' . \App\Models\Setting::get('hero_image_2')) : asset('assets/img/hero/hero-2.jpg');
+        $h3bg  = \App\Models\Setting::get('hero_image_3') ? asset('storage/' . \App\Models\Setting::get('hero_image_3')) : asset('assets/img/hero/hero-3.jpg');
+        $ht1   = \App\Models\Setting::get('hero_title_1',    'Trusted Telecom & IT Infrastructure Solutions');
+        $hs1   = \App\Models\Setting::get('hero_subtitle_1', 'Structured Cabling · Wi-Fi · Security · A/V · Web Development');
+        $ht2   = \App\Models\Setting::get('hero_title_2',    'MBE-Certified · Nationwide Coverage');
+        $hs2   = \App\Models\Setting::get('hero_subtitle_2', 'Delivering projects on budget and on time since 1999.');
+        $ht3   = \App\Models\Setting::get('hero_title_3',    'Complete Web & Software Solutions');
+        $hs3   = \App\Models\Setting::get('hero_subtitle_3', 'Custom websites, ERP systems, mobile apps and more.');
+    @endphp
+
     <!-- Hero Section Start -->
     <section class="hero-section fix hero-3">
         <div class="bottom-shape">
@@ -18,7 +30,7 @@
 
                 <!-- Slide 1 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-1.jpg') }}');">
+                    <div class="slider-image bg-cover" style="background-image: url('{{ $h1bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -38,11 +50,10 @@
                                 <div class="hero-content">
                                     <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">MBE Certified · Est. 1999</h5>
                                     <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        Trusted Telecom &<br>IT Infrastructure Solutions
+                                        {!! nl2br(e($ht1)) !!}
                                     </h1>
                                     <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        Structured Cabling · Wi-Fi · Security · A/V · Web Development<br>
-                                        Serving clients nationwide since 1999.
+                                        {{ $hs1 }}
                                     </p>
                                     <div class="hero-button">
                                         <a href="{{ route('about') }}" data-animation="slideInRight" data-duration="2s"
@@ -50,11 +61,12 @@
                                             About Us
                                             <i class="fa-solid fa-arrow-right-long"></i>
                                         </a>
-                                        <a href="{{ route('contact') }}" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white">
-                                            Get a Quote
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
+                                        <button type="button" data-animation="slideInRight" data-duration="2s"
+                                            data-delay=".9s" class="theme-btn border-white"
+                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                            Request for Call
+                                            <i class="fa-solid fa-phone-volume"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +76,7 @@
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-2.jpg') }}');">
+                    <div class="slider-image bg-cover" style="background-image: url('{{ $h2bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -84,11 +96,10 @@
                                 <div class="hero-content">
                                     <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">Nationwide Coverage</h5>
                                     <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        MBE-Certified<br>Nationwide Coverage
+                                        {!! nl2br(e($ht2)) !!}
                                     </h1>
                                     <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        Delivering projects on budget and on time since 1999.<br>
-                                        FL · SC · TX and across the United States.
+                                        {{ $hs2 }}
                                     </p>
                                     <div class="hero-button">
                                         <a href="{{ route('services.index') }}" data-animation="slideInRight" data-duration="2s"
@@ -96,11 +107,12 @@
                                             Our Services
                                             <i class="fa-solid fa-arrow-right-long"></i>
                                         </a>
-                                        <a href="{{ route('contact') }}" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white">
-                                            Contact Us
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
+                                        <button type="button" data-animation="slideInRight" data-duration="2s"
+                                            data-delay=".9s" class="theme-btn border-white"
+                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                            Request for Call
+                                            <i class="fa-solid fa-phone-volume"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +122,7 @@
 
                 <!-- Slide 3 -->
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover" style="background-image: url('{{ asset('assets/img/hero/hero-3.jpg') }}');">
+                    <div class="slider-image bg-cover" style="background-image: url('{{ $h3bg }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -130,11 +142,10 @@
                                 <div class="hero-content">
                                     <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">Digital Transformation</h5>
                                     <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        Complete Web &<br>Software Solutions
+                                        {!! nl2br(e($ht3)) !!}
                                     </h1>
                                     <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        Custom websites, ERP systems, mobile apps and more.<br>
-                                        End-to-end digital solutions for your business.
+                                        {{ $hs3 }}
                                     </p>
                                     <div class="hero-button">
                                         <a href="{{ route('services.show', 'web-development-software') }}" data-animation="slideInRight" data-duration="2s"
@@ -142,11 +153,12 @@
                                             Learn More
                                             <i class="fa-solid fa-arrow-right-long"></i>
                                         </a>
-                                        <a href="{{ route('contact') }}" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white">
-                                            Get Started
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
+                                        <button type="button" data-animation="slideInRight" data-duration="2s"
+                                            data-delay=".9s" class="theme-btn border-white"
+                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                            Request for Call
+                                            <i class="fa-solid fa-phone-volume"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

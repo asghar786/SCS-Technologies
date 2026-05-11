@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'SCS Technologies — Telecom, IT Infrastructure & Software Solutions. MBE-Certified. Est. 1999.'))">
     <meta name="keywords" content="{{ \App\Models\Setting::get('seo_keywords', '') }}">
     <title>@yield('title', \App\Models\Setting::get('site_name', 'SCS Technologies')) | @yield('meta_title', \App\Models\Setting::get('seo_title', 'Telecom & IT Solutions'))</title>
-    @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    @php
+        $favicon      = \App\Models\Setting::get('favicon');
+        $siteLogo     = \App\Models\Setting::get('logo');
+        $logoUrl      = $siteLogo ? asset('storage/' . $siteLogo) : asset('assets/img/logo.svg');
+        $siteName     = \App\Models\Setting::get('site_name', 'SCS Technologies');
+        $sitePhone    = \App\Models\Setting::get('phone', '+1 (305) 906-5182');
+        $sitePhoneTel = preg_replace('/[^\d+]/', '', $sitePhone);
+        $siteEmail    = \App\Models\Setting::get('email', 'syeds@scs-technologies.com');
+        $siteAddress  = \App\Models\Setting::get('address_miami', '10125 NW 116th Way, Medley, Florida 33178');
+        $footerAbout  = \App\Models\Setting::get('footer_about', 'SCS Technologies provides comprehensive telecom, IT infrastructure, security, and software solutions across the United States. MBE-Certified · Est. 1999.');
+        $fbUrl        = \App\Models\Setting::get('facebook', '#');
+        $twUrl        = \App\Models\Setting::get('twitter', '#');
+        $ytUrl        = \App\Models\Setting::get('youtube', '#');
+        $liUrl        = \App\Models\Setting::get('linkedin', '#');
+        $igUrl        = \App\Models\Setting::get('instagram', '#');
+    @endphp
     <link rel="shortcut icon" href="{{ $favicon ? asset('storage/' . $favicon) : asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
@@ -78,7 +94,7 @@
                     <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                         <div class="offcanvas__logo">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/img/logo.svg') }}" alt="SCS Technologies">
+                                <img src="{{ $logoUrl }}" alt="{{ $siteName }}">
                             </a>
                         </div>
                         <div class="offcanvas__close">
@@ -91,31 +107,31 @@
                         <ul>
                             <li class="d-flex align-items-center">
                                 <div class="offcanvas__contact-icon"><i class="fal fa-map-marker-alt"></i></div>
-                                <div class="offcanvas__contact-text">Miami · Orlando · Florence SC · San Antonio TX</div>
+                                <div class="offcanvas__contact-text">{{ $siteAddress }}</div>
                             </li>
                             <li class="d-flex align-items-center">
                                 <div class="offcanvas__contact-icon mr-15"><i class="fal fa-envelope"></i></div>
                                 <div class="offcanvas__contact-text">
-                                    <a href="mailto:syeds@scs-technologies.com">syeds@scs-technologies.com</a>
+                                    <a href="mailto:{{ $siteEmail }}">{{ $siteEmail }}</a>
                                 </div>
                             </li>
                             <li class="d-flex align-items-center">
                                 <div class="offcanvas__contact-icon mr-15"><i class="far fa-phone"></i></div>
                                 <div class="offcanvas__contact-text">
-                                    <a href="tel:+19543625193">+1 (954) 362-5193</a>
+                                    <a href="tel:{{ $sitePhoneTel }}">{{ $sitePhone }}</a>
                                 </div>
                             </li>
                         </ul>
                         <div class="header-button mt-4">
-                            <a href="{{ route('contact') }}" class="theme-btn text-center">
-                                <span>Get A Quote <i class="fa-solid fa-arrow-right-long"></i></span>
-                            </a>
+                            <button type="button" class="theme-btn text-center w-100" data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                <span>Request for Call <i class="fa-solid fa-phone-volume"></i></span>
+                            </button>
                         </div>
                         <div class="social-icon d-flex align-items-center">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
+                            <a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>
+                            <a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -132,20 +148,20 @@
                     <ul class="contact-list">
                         <li>
                             <i class="far fa-envelope"></i>
-                            <a href="mailto:syeds@scs-technologies.com" class="link">syeds@scs-technologies.com</a>
+                            <a href="mailto:{{ $siteEmail }}" class="link">{{ $siteEmail }}</a>
                         </li>
                         <li>
                             <i class="fa-solid fa-phone-volume"></i>
-                            <a href="tel:+19543625193">+1 (954) 362-5193</a>
+                            <a href="tel:{{ $sitePhoneTel }}">{{ $sitePhone }}</a>
                         </li>
                     </ul>
                     <div class="top-right">
                         <div class="social-icon d-flex align-items-center">
                             <span>Follow Us:</span>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
+                            <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
+                            <a href="{{ $liUrl }}"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="{{ $ytUrl }}"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
@@ -158,7 +174,7 @@
                         <div class="header-left">
                             <div class="logo">
                                 <a href="{{ route('home') }}" class="header-logo">
-                                    <img src="{{ asset('assets/img/logo.svg') }}" alt="SCS Technologies">
+                                    <img src="{{ $logoUrl }}" alt="{{ $siteName }}">
                                 </a>
                             </div>
                         </div>
@@ -215,9 +231,9 @@
                             </div>
                             <a href="#0" class="search-trigger search-icon"><i class="fal fa-search"></i></a>
                             <div class="header-button">
-                                <a href="{{ route('contact') }}" class="theme-btn bg-white">
-                                    <span>Get A Quote <i class="fa-solid fa-arrow-right-long"></i></span>
-                                </a>
+                                <button type="button" class="theme-btn bg-white" data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                    <span>Request for Call <i class="fa-solid fa-phone-volume"></i></span>
+                                </button>
                             </div>
                             <div class="header__hamburger d-lg-none my-auto">
                                 <div class="sidebar__toggle">
@@ -257,8 +273,8 @@
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 1.6665C11.036 1.6665 7 5.7385 7 10.7612C7 12.4625 7.74933 14.5732 8.84 16.6785C11.2413 21.3145 15.2413 25.9838 15.2413 25.9838C15.3352 26.0932 15.4516 26.1809 15.5826 26.2411C15.7135 26.3012 15.8559 26.3324 16 26.3324C16.1441 26.3324 16.2865 26.3012 16.4174 26.2411C16.5484 26.1809 16.6648 26.0932 16.7587 25.9838C16.7587 25.9838 20.7587 21.3145 23.16 16.6785C24.2507 14.5732 25 12.4625 25 10.7612C25 5.7385 20.964 1.6665 16 1.6665ZM16 6.99984C15.0447 7.0256 14.1371 7.42322 13.4705 8.10804C12.8039 8.79286 12.4309 9.71081 12.4309 10.6665C12.4309 11.6222 12.8039 12.5401 13.4705 13.225C14.1371 13.9098 15.0447 14.3074 16 14.3332C16.9553 14.3074 17.8629 13.9098 18.5295 13.225C19.1961 12.5401 19.5691 11.6222 19.5691 10.6665C19.5691 9.71081 19.1961 8.79286 18.5295 8.10804C17.8629 7.42322 16.9553 7.0256 16 6.99984Z" fill="#384BFF"/><path fill-rule="evenodd" clip-rule="evenodd" d="M22.3788 23.1693C23.4628 23.4946 24.3562 23.8973 24.9735 24.3693C25.3735 24.6733 25.6668 24.9706 25.6668 25.3333C25.6668 25.5466 25.5455 25.74 25.3748 25.9333C25.0922 26.252 24.6722 26.5386 24.1522 26.8053C22.3148 27.7453 19.3442 28.3333 16.0002 28.3333C12.6562 28.3333 9.6855 27.7453 7.84816 26.8053C7.32816 26.5386 6.90816 26.252 6.6255 25.9333C6.45483 25.74 6.3335 25.5466 6.3335 25.3333C6.3335 24.9706 6.62683 24.6733 7.02683 24.3693C7.64416 23.8973 8.5375 23.4946 9.6215 23.1693C9.87557 23.0929 10.0889 22.9187 10.2146 22.6851C10.3402 22.4514 10.3679 22.1774 10.2915 21.9233C10.2151 21.6692 10.0409 21.4559 9.80726 21.3302C9.57359 21.2046 9.29957 21.1769 9.0455 21.2533C7.39483 21.7506 6.11216 22.432 5.3415 23.1853C4.66416 23.8453 4.3335 24.584 4.3335 25.3333C4.3335 26.2693 4.86283 27.2026 5.93883 27.9813C7.82683 29.3466 11.6188 30.3333 16.0002 30.3333C20.3815 30.3333 24.1735 29.3466 26.0615 27.9813C27.1375 27.2026 27.6668 26.2693 27.6668 25.3333C27.6668 24.584 27.3362 23.8453 26.6588 23.1853C25.8882 22.432 24.6055 21.7506 22.9548 21.2533C22.7008 21.1769 22.427 21.2046 22.1933 21.3302C21.9596 21.4559 21.7854 21.6692 21.709 21.9233C21.6327 22.1774 21.6603 22.4514 21.786 22.6851C21.9116 22.9187 22.125 23.0929 22.3788 23.1693Z" fill="#384BFF"/></svg>
                     </div>
                     <div class="content">
-                        <p>Our Offices</p>
-                        <h3>Miami · Orlando · Florence SC · San Antonio TX</h3>
+                        <p>Our Location</p>
+                        <h3>{{ $siteAddress }}</h3>
                     </div>
                 </div>
                 <div class="contact-info-items wow fadeInUp" data-wow-delay=".5s">
@@ -267,7 +283,7 @@
                     </div>
                     <div class="content">
                         <p>Send Email</p>
-                        <h3><a href="mailto:syeds@scs-technologies.com">syeds@scs-technologies.com</a></h3>
+                        <h3><a href="mailto:{{ $siteEmail }}">{{ $siteEmail }}</a></h3>
                     </div>
                 </div>
                 <div class="contact-info-items wow fadeInUp" data-wow-delay=".3s">
@@ -276,7 +292,7 @@
                     </div>
                     <div class="content">
                         <p>Call Us</p>
-                        <h3><a href="tel:+19543625193">+1 (954) 362-5193</a></h3>
+                        <h3><a href="tel:{{ $sitePhoneTel }}">{{ $sitePhone }}</a></h3>
                     </div>
                 </div>
             </div>
@@ -290,15 +306,15 @@
                                 <div class="gt-widget-about">
                                     <div class="about-logo">
                                         <a href="{{ route('home') }}">
-                                            <img src="{{ asset('assets/img/footer-logo.svg') }}" alt="SCS Technologies">
+                                            <img src="{{ $logoUrl }}" alt="{{ $siteName }}">
                                         </a>
                                     </div>
-                                    <p class="about-text">SCS Technologies provides comprehensive telecom, IT infrastructure, security, and software solutions across the United States. MBE-Certified · Est. 1999.</p>
+                                    <p class="about-text">{{ $footerAbout }}</p>
                                     <div class="gt-social style2">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
-                                        <a href="#"><i class="fab fa-youtube"></i></a>
-                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                        <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
+                                        <a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>
+                                        <a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -339,15 +355,15 @@
                                 <div class="checklist style2">
                                     <ul class="ps-0">
                                         <li class="text-white"><i class="fa-solid fa-envelope"></i></li>
-                                        <li class="text-white">syeds@scs-technologies.com</li>
+                                        <li class="text-white"><a href="mailto:{{ $siteEmail }}" class="text-white">{{ $siteEmail }}</a></li>
                                     </ul>
                                     <ul class="ps-0">
                                         <li class="text-white"><i class="fa-solid fa-phone"></i></li>
-                                        <li class="text-white">+1 (954) 362-5193</li>
+                                        <li class="text-white"><a href="tel:{{ $sitePhoneTel }}" class="text-white">{{ $sitePhone }}</a></li>
                                     </ul>
                                     <ul class="ps-0 mt-2">
                                         <li class="text-white"><i class="fa-solid fa-location-dot"></i></li>
-                                        <li class="text-white">Miami · Orlando · Florence SC · San Antonio TX</li>
+                                        <li class="text-white">{{ $siteAddress }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -387,5 +403,96 @@
     <script src="{{ asset('assets/js/wow.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
+
+    <!-- Request for Call Modal -->
+    <div class="modal fade" id="callbackModal" tabindex="-1" aria-labelledby="callbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius:12px; overflow:hidden; border:none;">
+                <div class="modal-header" style="background:#384BFF; border:none; padding:20px 24px;">
+                    <h5 class="modal-title text-white fw-bold" id="callbackModalLabel">
+                        <i class="fa-solid fa-phone-volume me-2"></i> Request for Call
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted mb-4">Leave your details and our team will call you back as soon as possible.</p>
+                    <div id="callbackSuccess" class="alert alert-success d-none mb-3">
+                        <i class="fa-solid fa-circle-check me-2"></i>
+                        <span id="callbackSuccessMsg">Thank you! We will call you shortly.</span>
+                    </div>
+                    <form id="callbackForm" novalidate>
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Your Name <span class="text-danger">*</span></label>
+                            <input type="text" name="callback_name" id="callbackName" class="form-control form-control-lg"
+                                   placeholder="Enter your full name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Contact Number <span class="text-danger">*</span></label>
+                            <input type="tel" name="callback_phone" id="callbackPhone" class="form-control form-control-lg"
+                                   placeholder="+1 (305) 000-0000" required>
+                            <div class="invalid-feedback">Please enter a valid phone number.</div>
+                        </div>
+                        <button type="submit" class="theme-btn w-100" id="callbackSubmit">
+                            Send Request <i class="fa-solid fa-paper-plane ms-1"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        var form = document.getElementById('callbackForm');
+        if (!form) return;
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            var btn = document.getElementById('callbackSubmit');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Sending...';
+
+            fetch('{{ route('callback.store') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    callback_name:  document.getElementById('callbackName').value,
+                    callback_phone: document.getElementById('callbackPhone').value,
+                }),
+            })
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                document.getElementById('callbackSuccessMsg').textContent = data.message || 'Thank you! We will call you shortly.';
+                document.getElementById('callbackSuccess').classList.remove('d-none');
+                form.classList.add('d-none');
+            })
+            .catch(function () {
+                btn.disabled = false;
+                btn.innerHTML = 'Send Request <i class="fa-solid fa-paper-plane ms-1"></i>';
+                alert('Something went wrong. Please try again.');
+            });
+        });
+
+        document.getElementById('callbackModal').addEventListener('hidden.bs.modal', function () {
+            form.reset();
+            form.classList.remove('was-validated', 'd-none');
+            document.getElementById('callbackSuccess').classList.add('d-none');
+            var btn = document.getElementById('callbackSubmit');
+            btn.disabled = false;
+            btn.innerHTML = 'Send Request <i class="fa-solid fa-paper-plane ms-1"></i>';
+        });
+    })();
+    </script>
 </body>
 </html>

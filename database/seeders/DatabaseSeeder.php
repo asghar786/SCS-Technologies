@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
         $settings = [
             'site_name'        => 'SCS Technologies',
             'tagline'          => 'A Team of Dedicated Professionals to Meet Your Needs',
-            'phone'            => '+1 (954) 362-5193',
+            'phone'            => '+1 (305) 906-5182',
             'email'            => 'syeds@scs-technologies.com',
-            'address_miami'    => 'Miami, FL',
+            'address_miami'    => '10125 NW 116th Way, Medley, Florida 33178',
             'address_orlando'  => 'Orlando, FL',
             'address_sc'       => 'Florence, SC',
             'address_tx'       => 'San Antonio, TX',
@@ -63,6 +63,11 @@ class DatabaseSeeder extends Seeder
             'seo_title'        => 'SCS Technologies — Telecom, IT Infrastructure & Software Solutions',
             'seo_description'  => 'SCS Technologies is a MBE-certified telecom and IT infrastructure solutions provider. Structured cabling, Wi-Fi, surveillance, A/V, and web development. Est. 1999.',
             'seo_keywords'     => 'structured cabling, Wi-Fi network, access control, surveillance, audio visual, IT consulting, web development, MBE certified, Florida, telecom',
+
+            // Hero slide images
+            'hero_image_1'     => '',
+            'hero_image_2'     => '',
+            'hero_image_3'     => '',
 
             // Branding
             'logo'             => '',
