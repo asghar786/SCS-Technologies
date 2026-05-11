@@ -1,4 +1,4 @@
-/*
+﻿/*
 Theme Name: Extech
 Author: ex-coders
 Author URI: https://themeforest.net/user/ex-coders
@@ -11,7 +11,7 @@ Version: 1.0.0
   --body: #fff;
   --black: #000;
   --white: #fff;
-  --theme: #384BFF;
+  --theme: #5A95CF;
   --theme2: #18185E;
   --theme-color3: #F98600;
   --header: #0F0D1D;
@@ -12357,7 +12357,7 @@ input.main-search-input::placeholder {
   background-color: var(--white);
 }
 .service-box-items.style-3::before {
-  background: linear-gradient(180deg, #384BFF -23.85%, #6324B3 100%);
+  background: linear-gradient(180deg, #5A95CF -23.85%, #6324B3 100%);
   border-radius: 10px;
 }
 .service-box-items.style-3::after {
