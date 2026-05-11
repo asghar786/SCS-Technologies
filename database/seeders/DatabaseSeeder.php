@@ -55,6 +55,22 @@ class DatabaseSeeder extends Seeder
             'stat_states'      => '4',
             'about_description'=> 'SCS Technologies is a privately owned business dedicated to giving you the very best to meet and exceed your telecommunications and infrastructure needs. Consistently ranked among the top integrators in Florida, our in-house professional engineers and qualified technical staff deliver every project within budget and on time.',
             'footer_about'     => 'SCS Technologies provides comprehensive telecom, IT infrastructure, security, and software solutions across the United States. MBE-Certified · Est. 1999.',
+
+            // Social handles
+            'instagram'        => '#',
+
+            // SEO
+            'seo_title'        => 'SCS Technologies — Telecom, IT Infrastructure & Software Solutions',
+            'seo_description'  => 'SCS Technologies is a MBE-certified telecom and IT infrastructure solutions provider. Structured cabling, Wi-Fi, surveillance, A/V, and web development. Est. 1999.',
+            'seo_keywords'     => 'structured cabling, Wi-Fi network, access control, surveillance, audio visual, IT consulting, web development, MBE certified, Florida, telecom',
+
+            // Branding
+            'logo'             => '',
+            'favicon'          => '',
+
+            // Analytics
+            'google_analytics_id' => '',
+            'clarity_id'          => '',
         ];
 
         $now = now();

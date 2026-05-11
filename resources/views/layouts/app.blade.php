@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="@yield('meta_description', 'SCS Technologies — Telecom, IT Infrastructure & Software Solutions. MBE-Certified. Est. 1999.')">
-    <title>@yield('title', 'SCS Technologies') | Telecom & IT Solutions</title>
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+    <meta name="description" content="@yield('meta_description', \App\Models\Setting::get('seo_description', 'SCS Technologies — Telecom, IT Infrastructure & Software Solutions. MBE-Certified. Est. 1999.'))">
+    <meta name="keywords" content="{{ \App\Models\Setting::get('seo_keywords', '') }}">
+    <title>@yield('title', \App\Models\Setting::get('site_name', 'SCS Technologies')) | @yield('meta_title', \App\Models\Setting::get('seo_title', 'Telecom & IT Solutions'))</title>
+    @php $favicon = \App\Models\Setting::get('favicon'); @endphp
+    <link rel="shortcut icon" href="{{ $favicon ? asset('storage/' . $favicon) : asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
@@ -17,6 +19,30 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     @stack('styles')
+
+    {{-- Google Analytics --}}
+    @php $gaId = \App\Models\Setting::get('google_analytics_id'); @endphp
+    @if($gaId)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $gaId }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ $gaId }}');
+    </script>
+    @endif
+
+    {{-- Microsoft Clarity --}}
+    @php $clarityId = \App\Models\Setting::get('clarity_id'); @endphp
+    @if($clarityId)
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "{{ $clarityId }}");
+    </script>
+    @endif
 </head>
 <body>
 
