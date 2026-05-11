@@ -14,15 +14,34 @@
     --box-shadow-2: 0px 4px 25px rgba(90, 149, 207, 0.15);
 }
 
-/* Vertically center email/phone items in the header top bar */
+/* Vertically center everything in the header top bar */
+.header-top-section {
+    display: flex;
+    align-items: center;
+}
+.header-top-section .container {
+    display: flex;
+    align-items: center;
+}
+.header-top-wrapper {
+    align-items: center;
+    width: 100%;
+}
+.header-top-wrapper .contact-list {
+    align-items: center;
+}
 .header-top-wrapper .contact-list li {
     display: flex;
     align-items: center;
+    gap: 6px;
     line-height: 1;
 }
-.header-top-wrapper .contact-list li i {
+.header-top-wrapper .contact-list li i,
+.header-top-wrapper .contact-list li a,
+.header-top-wrapper .contact-list li span {
     line-height: 1;
     vertical-align: middle;
+    margin-right: 0;
 }
 
 /* Remove the blue right-panel background from header-3 — make it white */
