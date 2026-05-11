@@ -14,6 +14,7 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        return view('services.show', compact('service'));
+        $allServices = Service::active()->ordered()->get(['id', 'title', 'slug']);
+        return view('services.show', compact('service', 'allServices'));
     }
 }
