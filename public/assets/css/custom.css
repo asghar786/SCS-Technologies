@@ -125,6 +125,15 @@
 .footer-cta-banner.cta-banner-2::before {
     display: none !important;
 }
+/* Hide the mispositioned ::before bar images, use border-right dividers instead */
+.footer-cta-banner .cta-wrapper-2 .author-icon::before {
+    display: none !important;
+}
+.footer-cta-banner .cta-wrapper-2 .author-icon:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 60px;
+    margin-right: 60px;
+}
 
 /* Footer nav lists — reduce item gap by 25% (20px → 15px), applied equally to both columns */
 .widget.widget_nav_menu.footer-widget .menu-all-pages-container .menu li {
