@@ -123,12 +123,22 @@
     {{-- Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function destroyChart(id) {
+        const canvas = document.getElementById(id);
+        if (!canvas) return;
+        const existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+    }
+
+    function initAnalyticsCharts() {
         const blue   = '#5A95CF';
         const light  = 'rgba(90,149,207,0.15)';
         const colors = ['#5A95CF','#3D7AB8','#F98600','#18185E','#6EBB8A','#E06C75','#C678DD','#56B6C2'];
 
+        ['dailyChart','hourlyChart','weekdayChart','continentChart','deviceChart'].forEach(destroyChart);
+
         // Daily
+        destroyChart('dailyChart');
         new Chart(document.getElementById('dailyChart'), {
             type: 'line',
             data: {
@@ -166,30 +176,34 @@
         });
 
         @if(count($continentLabels))
-        new Chart(document.getElementById('continentChart'), {
-            type: 'doughnut',
-            data: {
-                labels: @json($continentLabels),
-                datasets: [{ data: @json($continentData), backgroundColor: colors, borderWidth: 2 }]
-            },
-            options: { responsive: true, plugins: { legend: { position: 'right' } } }
-        });
+        if (document.getElementById('continentChart')) {
+            new Chart(document.getElementById('continentChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: @json($continentLabels),
+                    datasets: [{ data: @json($continentData), backgroundColor: colors, borderWidth: 2 }]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'right' } } }
+            });
+        }
         @endif
 
         @if($devices->count())
-        new Chart(document.getElementById('deviceChart'), {
-            type: 'doughnut',
-            data: {
-                labels: @json($devices->pluck('device')),
-                datasets: [{ data: @json($devices->pluck('visits')), backgroundColor: colors, borderWidth: 2 }]
-            },
-            options: { responsive: true, plugins: { legend: { position: 'right' } } }
-        });
+        if (document.getElementById('deviceChart')) {
+            new Chart(document.getElementById('deviceChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: @json($devices->pluck('device')),
+                    datasets: [{ data: @json($devices->pluck('visits')), backgroundColor: colors, borderWidth: 2 }]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'right' } } }
+            });
+        }
         @endif
-    });
+    }
 
-    // Re-init charts when Livewire updates
-    document.addEventListener('livewire:navigated', function () { location.reload(); });
+    document.addEventListener('DOMContentLoaded', initAnalyticsCharts);
+    document.addEventListener('livewire:updated', initAnalyticsCharts);
     </script>
 
 </x-filament-panels::page>
