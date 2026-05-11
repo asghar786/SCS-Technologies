@@ -266,35 +266,35 @@
 
     <!-- Footer -->
     <footer class="footer-section pt-100 footer-bg">
-        <div class="container">
-            <div class="cta-wrapper-2 border-radius wow fadeInUp" data-wow-delay=".3s">
-                <div class="author-icon">
-                    <div class="icon">
-                        <i class="fa-solid fa-location-dot"></i>
+        <div class="cta-banner-2 footer-cta-banner">
+            <div class="container">
+                <div class="cta-wrapper-2 border-radius wow fadeInUp" data-wow-delay=".3s">
+                    <div class="author-icon">
+                        <div class="icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="content">
+                            <span>Our Location</span>
+                            <h4>{{ $siteAddress }}</h4>
+                        </div>
                     </div>
-                    <div class="content">
-                        <span>Our Location</span>
-                        <h4>{{ $siteAddress }}</h4>
+                    <div class="author-icon">
+                        <div class="icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="content">
+                            <span>Send Email</span>
+                            <h4><a href="mailto:{{ $siteEmail }}">{{ $siteEmail }}</a></h4>
+                        </div>
                     </div>
-                </div>
-                <div class="header-divider"></div>
-                <div class="author-icon">
-                    <div class="icon">
-                        <i class="fa-solid fa-envelope"></i>
-                    </div>
-                    <div class="content">
-                        <span>Send Email</span>
-                        <h4><a href="mailto:{{ $siteEmail }}" style="color:inherit;">{{ $siteEmail }}</a></h4>
-                    </div>
-                </div>
-                <div class="header-divider"></div>
-                <div class="author-icon">
-                    <div class="icon">
-                        <i class="fa-solid fa-phone"></i>
-                    </div>
-                    <div class="content">
-                        <span>Call Us</span>
-                        <h4><a href="{{ $sitePhoneTel }}" style="color:inherit;">{{ $sitePhone }}</a></h4>
+                    <div class="author-icon">
+                        <div class="icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="content">
+                            <span>Call Us</span>
+                            <h4><a href="{{ $sitePhoneTel }}">{{ $sitePhone }}</a></h4>
+                        </div>
                     </div>
                 </div>
             </div>
