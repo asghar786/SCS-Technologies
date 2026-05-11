@@ -2,11 +2,15 @@
 @section('title', $service->title)
 
 @section('content')
-@include('partials.page-hero', ['title' => $service->title, 'crumbs' => [
-    ['label' => 'Home',            'url' => route('home')],
-    ['label' => 'Services',        'url' => route('services.index')],
-    ['label' => $service->title,   'url' => ''],
-]])
+@include('partials.page-hero', [
+    'title'   => $service->title,
+    'bgImage' => $service->banner_image ? asset('storage/' . $service->banner_image) : null,
+    'crumbs'  => [
+        ['label' => 'Home',          'url' => route('home')],
+        ['label' => 'Services',      'url' => route('services.index')],
+        ['label' => $service->title, 'url' => ''],
+    ],
+])
 
 <!-- Service Details Section Start -->
 <section class="service-details-section fix section-padding">

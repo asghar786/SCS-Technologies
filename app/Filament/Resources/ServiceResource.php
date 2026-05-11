@@ -54,10 +54,21 @@ class ServiceResource extends Resource
                     ->columnSpanFull(),
             ]),
 
-            Forms\Components\Section::make('Image')->schema([
+            Forms\Components\Section::make('Images')->schema([
                 Forms\Components\FileUpload::make('image')
+                    ->label('Service Icon / Card Image')
                     ->image()
+                    ->disk('public')
+                    ->visibility('public')
                     ->directory('services')
+                    ->columnSpanFull(),
+                Forms\Components\FileUpload::make('banner_image')
+                    ->label('Title Background Image (1920×400)')
+                    ->image()
+                    ->disk('public')
+                    ->visibility('public')
+                    ->directory('services/banners')
+                    ->helperText('Upload any size — will be auto-cropped & converted to WebP 1920×400')
                     ->columnSpanFull(),
             ]),
         ]);

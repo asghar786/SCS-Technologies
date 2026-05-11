@@ -10,7 +10,7 @@ class Service extends Model
 {
     use HasActiveScope, HasSlugRouteKey;
 
-    protected $fillable = ['title', 'slug', 'icon', 'image', 'short_desc', 'full_desc', 'order', 'active'];
+    protected $fillable = ['title', 'slug', 'icon', 'image', 'banner_image', 'short_desc', 'full_desc', 'order', 'active'];
 
     protected $casts = ['active' => 'boolean'];
 

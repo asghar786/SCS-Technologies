@@ -110,7 +110,7 @@
                             <div class="circle-shape">
                                 <img src="{{ asset('assets/img/about/circle.png') }}" alt="shape-img">
                             </div>
-                            <img src="{{ asset('assets/img/about/05.png') }}" alt="SCS Technologies Team">
+                            <img src="{{ asset('assets/img/about/team2.png') }}" alt="SCS Technologies Team">
                         </div>
                     </div>
                     <div class="col-lg-6 mt-4 mt-lg-0">
