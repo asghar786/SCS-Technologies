@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HeroSlide;
 use App\Models\Post;
 use App\Models\Service;
 use App\Models\Setting;
@@ -11,10 +12,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $heroSlides   = HeroSlide::active()->ordered()->get();
         $services     = Service::active()->ordered()->get();
         $testimonials = Testimonial::active()->get();
         $latestPosts  = Post::published()->latest('published_at')->limit(3)->get();
 
-        return view('home', compact('services', 'testimonials', 'latestPosts'));
+        return view('home', compact('heroSlides', 'services', 'testimonials', 'latestPosts'));
     }
 }

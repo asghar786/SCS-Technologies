@@ -3,39 +3,19 @@
 @section('title', 'Home')
 
 @push('styles')
-@php
-    $mob1 = \App\Models\Setting::get('hero_image_1_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_1_mobile')) : null;
-    $mob2 = \App\Models\Setting::get('hero_image_2_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_2_mobile')) : null;
-    $mob3 = \App\Models\Setting::get('hero_image_3_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_3_mobile')) : null;
-@endphp
 <style>
+@foreach($heroSlides as $i => $slide)
 @media (max-width: 767px) {
-    .swiper-slide:nth-child(1) .hero-bg-desktop { background-image: url('{{ $mob1 ?? asset('assets/img/hero/hero-1.jpg') }}') !important; background-position: center center; }
-    .swiper-slide:nth-child(2) .hero-bg-desktop { background-image: url('{{ $mob2 ?? asset('assets/img/hero/hero-2.jpg') }}') !important; background-position: center center; }
-    .swiper-slide:nth-child(3) .hero-bg-desktop { background-image: url('{{ $mob3 ?? asset('assets/img/hero/hero-3.jpg') }}') !important; background-position: center center; }
+    .swiper-slide:nth-child({{ $i + 1 }}) .hero-bg-desktop {
+        background-image: url('{{ $slide->mobileImageUrl() }}') !important;
+        background-position: center center;
+    }
 }
+@endforeach
 </style>
 @endpush
 
 @section('content')
-
-    @php
-        // Desktop backgrounds
-        $h1bg   = \App\Models\Setting::get('hero_image_1') ? asset('storage/' . \App\Models\Setting::get('hero_image_1')) : asset('assets/img/hero/hero-1.jpg');
-        $h2bg   = \App\Models\Setting::get('hero_image_2') ? asset('storage/' . \App\Models\Setting::get('hero_image_2')) : asset('assets/img/hero/hero-2.jpg');
-        $h3bg   = \App\Models\Setting::get('hero_image_3') ? asset('storage/' . \App\Models\Setting::get('hero_image_3')) : asset('assets/img/hero/hero-3.jpg');
-        // Mobile backgrounds — fall back to desktop if not set
-        $h1mob  = \App\Models\Setting::get('hero_image_1_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_1_mobile')) : $h1bg;
-        $h2mob  = \App\Models\Setting::get('hero_image_2_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_2_mobile')) : $h2bg;
-        $h3mob  = \App\Models\Setting::get('hero_image_3_mobile') ? asset('storage/' . \App\Models\Setting::get('hero_image_3_mobile')) : $h3bg;
-        // Titles & subtitles
-        $ht1    = \App\Models\Setting::get('hero_title_1',    'Trusted Telecom & IT Infrastructure Solutions');
-        $hs1    = \App\Models\Setting::get('hero_subtitle_1', 'Structured Cabling · Wi-Fi · Security · A/V · Web Development');
-        $ht2    = \App\Models\Setting::get('hero_title_2',    'MBE-Certified · Nationwide Coverage');
-        $hs2    = \App\Models\Setting::get('hero_subtitle_2', 'Delivering projects on budget and on time since 1999.');
-        $ht3    = \App\Models\Setting::get('hero_title_3',    'Complete Web & Software Solutions');
-        $hs3    = \App\Models\Setting::get('hero_subtitle_3', 'Custom websites, ERP systems, mobile apps and more.');
-    @endphp
 
     <!-- Hero Section Start -->
     <section class="hero-section fix hero-3">
@@ -49,9 +29,9 @@
         <div class="swiper hero-slider">
             <div class="swiper-wrapper">
 
-                <!-- Slide 1 -->
+                @foreach($heroSlides as $slide)
                 <div class="swiper-slide">
-                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h1bg }}');">
+                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $slide->desktopImageUrl() }}');">
                         <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
                             <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
                         </div>
@@ -69,123 +49,48 @@
                         <div class="row g-4 align-items-center">
                             <div class="col-lg-8">
                                 <div class="hero-content">
-                                    <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">MBE Certified · Est. 1999</h5>
+                                    @if($slide->badge)
+                                    <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">{{ $slide->badge }}</h5>
+                                    @endif
                                     <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        {!! nl2br(e($ht1)) !!}
+                                        {!! nl2br(e($slide->title)) !!}
                                     </h1>
+                                    @if($slide->subtitle)
                                     <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        {{ $hs1 }}
+                                        {{ $slide->subtitle }}
                                     </p>
+                                    @endif
                                     <div class="hero-button">
-                                        <a href="{{ route('about') }}" data-animation="slideInRight" data-duration="2s"
+                                        @if($slide->btn1_text)
+                                        <a href="{{ $slide->btn1_url ?? '#' }}" data-animation="slideInRight" data-duration="2s"
                                             data-delay=".9s" class="theme-btn hover-white">
-                                            About Us
+                                            {{ $slide->btn1_text }}
                                             <i class="fa-solid fa-arrow-right-long"></i>
                                         </a>
-                                        <button type="button" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white"
-                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
-                                            Request for Call
-                                            <i class="fa-solid fa-phone-volume"></i>
-                                        </button>
+                                        @endif
+                                        @if($slide->btn2_text)
+                                            @if($slide->btn2_url === '#callback')
+                                            <button type="button" data-animation="slideInRight" data-duration="2s"
+                                                data-delay=".9s" class="theme-btn border-white"
+                                                data-bs-toggle="modal" data-bs-target="#callbackModal">
+                                                {{ $slide->btn2_text }}
+                                                <i class="fa-solid fa-phone-volume"></i>
+                                            </button>
+                                            @else
+                                            <a href="{{ $slide->btn2_url ?? '#' }}" data-animation="slideInRight" data-duration="2s"
+                                                data-delay=".9s" class="theme-btn border-white">
+                                                {{ $slide->btn2_text }}
+                                                <i class="fa-solid fa-phone-volume"></i>
+                                            </a>
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h2bg }}');">
-                        <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
-                            <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
-                        </div>
-                        <div class="border-shape" data-animation="slideInRight" data-duration="3s" data-delay="2.2s">
-                            <img src="{{ asset('assets/img/hero/border-shape.png') }}" alt="shape-img">
-                        </div>
-                        <div class="circle-shape" data-animation="slideInRight" data-duration="3s" data-delay="2.1s">
-                            <img src="{{ asset('assets/img/choose/circle.png') }}" alt="shape-img">
-                        </div>
-                        <div class="frame" data-animation="slideInLeft" data-duration="3s" data-delay="2.2s">
-                            <img src="{{ asset('assets/img/frame.png') }}" alt="shape-img">
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-8">
-                                <div class="hero-content">
-                                    <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">Nationwide Coverage</h5>
-                                    <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        {!! nl2br(e($ht2)) !!}
-                                    </h1>
-                                    <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        {{ $hs2 }}
-                                    </p>
-                                    <div class="hero-button">
-                                        <a href="{{ route('services.index') }}" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn hover-white">
-                                            Our Services
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-                                        <button type="button" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white"
-                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
-                                            Request for Call
-                                            <i class="fa-solid fa-phone-volume"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="swiper-slide">
-                    <div class="slider-image bg-cover hero-bg-desktop" style="background-image: url('{{ $h3bg }}');">
-                        <div class="mask-shape" data-animation="slideInDown" data-duration="3s" data-delay="2s">
-                            <img src="{{ asset('assets/img/hero/mask-shape-2.png') }}" alt="shape-img">
-                        </div>
-                        <div class="border-shape" data-animation="slideInRight" data-duration="3s" data-delay="2.2s">
-                            <img src="{{ asset('assets/img/hero/border-shape.png') }}" alt="shape-img">
-                        </div>
-                        <div class="circle-shape" data-animation="slideInRight" data-duration="3s" data-delay="2.1s">
-                            <img src="{{ asset('assets/img/choose/circle.png') }}" alt="shape-img">
-                        </div>
-                        <div class="frame" data-animation="slideInLeft" data-duration="3s" data-delay="2.2s">
-                            <img src="{{ asset('assets/img/frame.png') }}" alt="shape-img">
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row g-4 align-items-center">
-                            <div class="col-lg-8">
-                                <div class="hero-content">
-                                    <h5 data-animation="slideInRight" data-duration="2s" data-delay=".3s">Digital Transformation</h5>
-                                    <h1 data-animation="slideInRight" data-duration="2s" data-delay=".5s">
-                                        {!! nl2br(e($ht3)) !!}
-                                    </h1>
-                                    <p data-animation="slideInRight" data-duration="2s" data-delay=".9s">
-                                        {{ $hs3 }}
-                                    </p>
-                                    <div class="hero-button">
-                                        <a href="{{ route('services.show', 'web-development-software') }}" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn hover-white">
-                                            Learn More
-                                            <i class="fa-solid fa-arrow-right-long"></i>
-                                        </a>
-                                        <button type="button" data-animation="slideInRight" data-duration="2s"
-                                            data-delay=".9s" class="theme-btn border-white"
-                                            data-bs-toggle="modal" data-bs-target="#callbackModal">
-                                            Request for Call
-                                            <i class="fa-solid fa-phone-volume"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
