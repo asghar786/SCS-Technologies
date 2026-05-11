@@ -110,3 +110,9 @@
     background-color: #5A95CF !important;
     color: #fff !important;
 }
+
+/* Service card — round top corners of thumbnail to match card radius */
+.service-card-items .service-image img {
+    border-radius: 10px 10px 0 0;
+    display: block;
+}
