@@ -196,7 +196,7 @@
                     <div class="service-card-items">
                         <div class="service-image">
                             @if($service->image)
-                                <img src="{{ asset('assets/img/service/' . $service->image) }}" alt="{{ $service->title }}">
+                                <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}">
                             @else
                                 <img src="{{ asset('assets/img/service/02.jpg') }}" alt="{{ $service->title }}">
                             @endif
