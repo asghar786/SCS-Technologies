@@ -67,13 +67,17 @@ class ManageSettings extends Page implements HasForms
                             FileUpload::make('hero_image_1')
                                 ->label('Desktop Background (1920×900)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
                                 ->columnSpan(1),
                             FileUpload::make('hero_image_1_mobile')
                                 ->label('Mobile Background (768×1024)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
                                 ->columnSpan(1),
                         ])->columns(2),
@@ -83,13 +87,17 @@ class ManageSettings extends Page implements HasForms
                             FileUpload::make('hero_image_2')
                                 ->label('Desktop Background (1920×900)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
                                 ->columnSpan(1),
                             FileUpload::make('hero_image_2_mobile')
                                 ->label('Mobile Background (768×1024)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
                                 ->columnSpan(1),
                         ])->columns(2),
@@ -99,13 +107,17 @@ class ManageSettings extends Page implements HasForms
                             FileUpload::make('hero_image_3')
                                 ->label('Desktop Background (1920×900)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 1920×900 (landscape).')
                                 ->columnSpan(1),
                             FileUpload::make('hero_image_3_mobile')
                                 ->label('Mobile Background (768×1024)')
                                 ->image()
+                                ->disk('public')
                                 ->directory('hero-slides')
+                                ->visibility('public')
                                 ->helperText('JPG/PNG — auto-converted to WebP at 768×1024 (portrait).')
                                 ->columnSpan(1),
                         ])->columns(2),
@@ -128,12 +140,16 @@ class ManageSettings extends Page implements HasForms
                         FileUpload::make('logo')
                             ->label('Site Logo')
                             ->image()
+                            ->disk('public')
                             ->directory('branding')
+                            ->visibility('public')
                             ->helperText('Replaces the text logo in the navigation'),
                         FileUpload::make('favicon')
                             ->label('Favicon')
                             ->image()
+                            ->disk('public')
                             ->directory('branding')
+                            ->visibility('public')
                             ->helperText('Browser tab icon (.png or .ico, 32×32 recommended)'),
                     ])->columns(2),
 
@@ -166,14 +182,27 @@ class ManageSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
+        // File upload fields — preserve the existing DB value when nothing new was uploaded
+        $fileFields = [
+            'logo', 'favicon',
+            'hero_image_1', 'hero_image_2', 'hero_image_3',
+            'hero_image_1_mobile', 'hero_image_2_mobile', 'hero_image_3_mobile',
+        ];
+        $existing = Setting::whereIn('key', $fileFields)->pluck('value', 'key');
+        foreach ($fileFields as $field) {
+            if (empty($data[$field]) && !empty($existing[$field])) {
+                $data[$field] = $existing[$field];
+            }
+        }
+
         foreach (['hero_image_1', 'hero_image_2', 'hero_image_3'] as $key) {
-            if (!empty($data[$key])) {
+            if (!empty($data[$key]) && !str_ends_with($data[$key], '.webp')) {
                 $data[$key] = $this->convertToWebP($data[$key], 1920, 900);
             }
         }
 
         foreach (['hero_image_1_mobile', 'hero_image_2_mobile', 'hero_image_3_mobile'] as $key) {
-            if (!empty($data[$key])) {
+            if (!empty($data[$key]) && !str_ends_with($data[$key], '.webp')) {
                 $data[$key] = $this->convertToWebP($data[$key], 768, 1024);
             }
         }
