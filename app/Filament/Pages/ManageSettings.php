@@ -53,11 +53,11 @@ class ManageSettings extends Page implements HasForms
                     ])->columns(2),
 
                     Tabs\Tab::make('Social Media')->schema([
-                        TextInput::make('facebook')->label('Facebook URL')->url()->prefixIcon('heroicon-o-link'),
-                        TextInput::make('twitter')->label('Twitter / X URL')->url()->prefixIcon('heroicon-o-link'),
-                        TextInput::make('linkedin')->label('LinkedIn URL')->url()->prefixIcon('heroicon-o-link'),
-                        TextInput::make('youtube')->label('YouTube URL')->url()->prefixIcon('heroicon-o-link'),
-                        TextInput::make('instagram')->label('Instagram URL')->url()->prefixIcon('heroicon-o-link'),
+                        TextInput::make('facebook')->label('Facebook URL')->prefixIcon('heroicon-o-link')->placeholder('https://facebook.com/yourpage'),
+                        TextInput::make('twitter')->label('Twitter / X URL')->prefixIcon('heroicon-o-link')->placeholder('https://twitter.com/yourhandle'),
+                        TextInput::make('linkedin')->label('LinkedIn URL')->prefixIcon('heroicon-o-link')->placeholder('https://linkedin.com/company/yourpage'),
+                        TextInput::make('youtube')->label('YouTube URL')->prefixIcon('heroicon-o-link')->placeholder('https://youtube.com/@yourchannel'),
+                        TextInput::make('instagram')->label('Instagram URL')->prefixIcon('heroicon-o-link')->placeholder('https://instagram.com/yourhandle'),
                     ])->columns(2),
 
                     Tabs\Tab::make('Hero Slides')->schema([
@@ -182,14 +182,15 @@ class ManageSettings extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        // File upload fields — preserve the existing DB value when nothing new was uploaded
-        $fileFields = [
+        // Preserve existing DB values for file uploads and any field left empty on this tab
+        $preserveFields = [
             'logo', 'favicon',
             'hero_image_1', 'hero_image_2', 'hero_image_3',
             'hero_image_1_mobile', 'hero_image_2_mobile', 'hero_image_3_mobile',
+            'facebook', 'twitter', 'linkedin', 'youtube', 'instagram',
         ];
-        $existing = Setting::whereIn('key', $fileFields)->pluck('value', 'key');
-        foreach ($fileFields as $field) {
+        $existing = Setting::whereIn('key', $preserveFields)->pluck('value', 'key');
+        foreach ($preserveFields as $field) {
             if (empty($data[$field]) && !empty($existing[$field])) {
                 $data[$field] = $existing[$field];
             }
