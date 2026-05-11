@@ -1,4 +1,4 @@
-﻿/* SCS Technologies â€” Brand Color Overrides */
+﻿/* SCS Technologies — Brand Color Overrides */
 :root {
     --theme: #5A95CF;
     --theme2: #18185E;
@@ -6,10 +6,32 @@
     --header: #0F0D1D;
     --bg2: #18185E;
     --border2: #242449;
-    --border3: #5262FF;
+    --border3: #5A95CF;
     --smoke-color2: #CFD3FC;
     --title-color: #0F0D1D;
     --text-color: #445375;
     --border-color: #D4DCFF;
-    --box-shadow-2: 0px 4px 25px rgba(56, 75, 255, 0.1);
+    --box-shadow-2: 0px 4px 25px rgba(90, 149, 207, 0.15);
+}
+
+/* Remove the decorative CSS triangle from the header-3 button area */
+.header-3 .header-button::before,
+.header-3 .header-main .header-right .header-button::before {
+    display: none !important;
+}
+
+/* Header “Request for Call” button — solid #5A95CF, white text, hover same color */
+.header-3 .header-button .theme-btn,
+.header-3 .header-button .theme-btn.bg-white {
+    background-color: #5A95CF !important;
+    color: #fff !important;
+    border: none;
+}
+.header-3 .header-button .theme-btn::before,
+.header-3 .header-button .theme-btn::after {
+    background-color: #3d7ab8 !important;
+}
+.header-3 .header-button .theme-btn:hover {
+    background-color: #5A95CF !important;
+    color: #fff !important;
 }
