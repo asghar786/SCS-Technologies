@@ -209,10 +209,10 @@
                                             </li>
                                             <li class="has-dropdown {{ request()->routeIs('blog*') ? 'active' : '' }}">
                                                 <a href="{{ route('blog.index') }}">
-                                                    Blog <i class="fas fa-angle-down"></i>
+                                                    Insights <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ route('blog.index') }}">Blog</a></li>
+                                                    <li><a href="{{ route('blog.index') }}">Insights</a></li>
                                                 </ul>
                                             </li>
                                             <li class="has-dropdown">
@@ -329,7 +329,7 @@
                                         <li><a href="{{ route('about') }}"><i class="fa-solid fa-chevrons-right"></i> About Us</a></li>
                                         <li><a href="{{ route('services.index') }}"><i class="fa-solid fa-chevrons-right"></i> Our Services</a></li>
                                         <li><a href="{{ route('projects.index') }}"><i class="fa-solid fa-chevrons-right"></i> Projects</a></li>
-                                        <li><a href="{{ route('blog.index') }}"><i class="fa-solid fa-chevrons-right"></i> Blog</a></li>
+                                        <li><a href="{{ route('blog.index') }}"><i class="fa-solid fa-chevrons-right"></i> Insights</a></li>
                                         <li><a href="{{ route('faq') }}"><i class="fa-solid fa-chevrons-right"></i> FAQ</a></li>
                                         <li><a href="{{ route('contact') }}"><i class="fa-solid fa-chevrons-right"></i> Contact Us</a></li>
                                     </ul>

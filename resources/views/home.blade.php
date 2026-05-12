@@ -470,7 +470,7 @@
                         <div class="section-title mxw-650">
                             <div class="subtitle">
                                 <img src="{{ asset('assets/img/icon/arrowLeft.svg') }}" alt="icon">
-                                <span>Latest Blog</span>
+                                <span>Latest Insights</span>
                                 <img src="{{ asset('assets/img/icon/arrowRight.svg') }}" alt="icon">
                             </div>
                             <h2 class="title">Checkout Our Latest News &amp; Articles</h2>

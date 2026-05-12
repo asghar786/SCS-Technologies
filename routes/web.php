@@ -20,8 +20,8 @@ Route::get('/services/{service}', [ServiceController::class, 'show'])->name('ser
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/insights', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/insights/{post}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/team', [TeamController::class, 'index'])->name('team');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');

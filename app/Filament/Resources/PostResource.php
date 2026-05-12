@@ -18,6 +18,9 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationGroup = 'Content';
     protected static ?int $navigationSort = 3;
+    protected static ?string $navigationLabel = 'Insights';
+    protected static ?string $modelLabel = 'Insight';
+    protected static ?string $pluralModelLabel = 'Insights';
 
     public static function form(Form $form): Form
     {

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Setting;
 use App\View\Composers\NavigationComposer;
+use Filament\Facades\Filament;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,6 +15,13 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        Filament::serving(function (): void {
+            $logo = Setting::where('key', 'logo')->value('value');
+            if ($logo) {
+                filament()->getCurrentPanel()->brandLogo(Storage::disk('public')->url($logo));
+            }
+        });
+
         View::composer('layouts.app', NavigationComposer::class);
 
         View::composer('*', function (\Illuminate\View\View $view): void {
