@@ -332,6 +332,9 @@
                                         <li><a href="{{ route('blog.index') }}"><i class="fa-solid fa-chevrons-right"></i> Insights</a></li>
                                         <li><a href="{{ route('faq') }}"><i class="fa-solid fa-chevrons-right"></i> FAQ</a></li>
                                         <li><a href="{{ route('contact') }}"><i class="fa-solid fa-chevrons-right"></i> Contact Us</a></li>
+                                        <li><a href="{{ route('disclaimer') }}"><i class="fa-solid fa-chevrons-right"></i> Disclaimer</a></li>
+                                        <li><a href="{{ route('privacy-policy') }}"><i class="fa-solid fa-chevrons-right"></i> Privacy Policy</a></li>
+                                        <li><a href="{{ route('terms-conditions') }}"><i class="fa-solid fa-chevrons-right"></i> Terms &amp; Conditions</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -384,8 +387,9 @@
                     </div>
                     <div class="layout-link wow fadeInUp" data-wow-delay=".6s">
                         <div class="link-wrapper">
-                            <a href="{{ route('contact') }}">Privacy Policy</a>
-                            <a href="{{ route('contact') }}">Terms &amp; Conditions</a>
+                            <a href="{{ route('disclaimer') }}">Disclaimer</a>
+                            <a href="{{ route('privacy-policy') }}">Privacy Policy</a>
+                            <a href="{{ route('terms-conditions') }}">Terms &amp; Conditions</a>
                         </div>
                     </div>
                 </div>

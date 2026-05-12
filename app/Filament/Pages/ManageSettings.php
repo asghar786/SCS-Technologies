@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\Setting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\TextInput;
@@ -163,6 +164,39 @@ class ManageSettings extends Page implements HasForms
                             ->placeholder('xxxxxxxxxx')
                             ->helperText('Your Clarity Project ID from clarity.microsoft.com'),
                     ])->columns(2),
+
+                    Tabs\Tab::make('Pages')->schema([
+                        RichEditor::make('disclaimer')
+                            ->label('Disclaimer')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'underline', 'strike',
+                                'h2', 'h3',
+                                'bulletList', 'orderedList',
+                                'link', 'blockquote',
+                                'undo', 'redo',
+                            ])
+                            ->columnSpanFull(),
+                        RichEditor::make('privacy_policy')
+                            ->label('Privacy Policy')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'underline', 'strike',
+                                'h2', 'h3',
+                                'bulletList', 'orderedList',
+                                'link', 'blockquote',
+                                'undo', 'redo',
+                            ])
+                            ->columnSpanFull(),
+                        RichEditor::make('terms_conditions')
+                            ->label('Terms & Conditions')
+                            ->toolbarButtons([
+                                'bold', 'italic', 'underline', 'strike',
+                                'h2', 'h3',
+                                'bulletList', 'orderedList',
+                                'link', 'blockquote',
+                                'undo', 'redo',
+                            ])
+                            ->columnSpanFull(),
+                    ])->columns(1),
 
                 ])->columnSpanFull(),
             ])

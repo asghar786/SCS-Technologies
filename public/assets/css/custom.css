@@ -188,14 +188,62 @@
 .footer-cta-banner.cta-banner-2::before {
     display: none !important;
 }
-/* Hide the mispositioned ::before bar images, use border-right dividers instead */
+/* Hide the template's mispositioned bar images */
 .footer-cta-banner .cta-wrapper-2 .author-icon::before {
     display: none !important;
 }
+
+/* ── Desktop: equal-width items with divider lines ───────────────── */
+.footer-cta-banner .cta-wrapper-2 {
+    justify-content: space-between !important;
+}
+.footer-cta-banner .cta-wrapper-2 .author-icon {
+    flex: 1;
+    min-width: 0;
+}
+.footer-cta-banner .cta-wrapper-2 .author-icon .content {
+    min-width: 0;
+}
+.footer-cta-banner .cta-wrapper-2 .author-icon .content h4 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .footer-cta-banner .cta-wrapper-2 .author-icon:not(:last-child) {
     border-right: 1px solid rgba(255, 255, 255, 0.4);
-    padding-right: 60px;
-    margin-right: 60px;
+    padding-right: 40px;
+    margin-right: 40px;
+}
+
+/* ── Mobile: stacked layout ──────────────────────────────────────── */
+@media (max-width: 767px) {
+    .footer-cta-banner .cta-wrapper-2 {
+        padding: 32px 24px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
+    }
+    .footer-cta-banner .cta-wrapper-2 .author-icon {
+        width: 100%;
+        flex: none;
+        padding: 18px 0;
+    }
+    .footer-cta-banner .cta-wrapper-2 .author-icon:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        padding-right: 0;
+        margin-right: 0;
+    }
+    .footer-cta-banner .cta-wrapper-2 .author-icon .content h4 {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        font-size: 15px;
+        word-break: break-word;
+    }
+    .footer-cta-banner .cta-wrapper-2 .author-icon .content span {
+        font-size: 12px;
+    }
 }
 
 /* Footer nav lists — reduce item gap by 25% (20px → 15px), applied equally to both columns */
@@ -207,4 +255,53 @@
 .service-card-items .service-image img {
     border-radius: 10px 10px 0 0;
     display: block;
+}
+
+/* ── Legal pages (Privacy Policy / Terms & Conditions) ───────────── */
+.legal-content {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.85;
+}
+.legal-content h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--title-color);
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+}
+.legal-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--title-color);
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+.legal-content p {
+    margin-bottom: 1.1rem;
+}
+.legal-content ul,
+.legal-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.1rem;
+}
+.legal-content ul li,
+.legal-content ol li {
+    margin-bottom: 0.4rem;
+}
+.legal-content a {
+    color: var(--theme);
+    text-decoration: underline;
+}
+.legal-content a:hover {
+    color: var(--theme2);
+}
+.legal-content blockquote {
+    border-left: 4px solid var(--theme);
+    padding: 0.75rem 1.25rem;
+    background: #f4f8fd;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #555;
 }

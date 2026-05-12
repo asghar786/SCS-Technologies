@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
@@ -30,3 +31,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::post('/callback', [CallbackController::class, 'store'])->name('callback.store');
+
+Route::get('/disclaimer', [PageController::class, 'disclaimer'])->name('disclaimer');
+Route::get('/privacy-policy', [PageController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
