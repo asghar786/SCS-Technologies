@@ -200,9 +200,18 @@
 .footer-cta-banner .cta-wrapper-2 .author-icon {
     flex: 1;
     min-width: 0;
+    overflow: visible;
+    padding: 8px 0;
+}
+.footer-cta-banner .cta-wrapper-2 .author-icon .icon {
+    flex-shrink: 0;
+    width: 60px !important;
+    height: 60px !important;
+    line-height: 60px !important;
 }
 .footer-cta-banner .cta-wrapper-2 .author-icon .content {
     min-width: 0;
+    overflow: hidden;
 }
 .footer-cta-banner .cta-wrapper-2 .author-icon .content h4 {
     white-space: nowrap;
@@ -227,6 +236,7 @@
         width: 100%;
         flex: none;
         padding: 18px 0;
+        overflow: visible;
     }
     .footer-cta-banner .cta-wrapper-2 .author-icon:not(:last-child) {
         border-right: none;
