@@ -59,6 +59,9 @@ class ManageSettings extends Page implements HasForms
                         TextInput::make('linkedin')->label('LinkedIn URL')->prefixIcon('heroicon-o-link')->placeholder('https://linkedin.com/company/yourpage'),
                         TextInput::make('youtube')->label('YouTube URL')->prefixIcon('heroicon-o-link')->placeholder('https://youtube.com/@yourchannel'),
                         TextInput::make('instagram')->label('Instagram URL')->prefixIcon('heroicon-o-link')->placeholder('https://instagram.com/yourhandle'),
+                        TextInput::make('tiktok')->label('TikTok URL')->prefixIcon('heroicon-o-link')->placeholder('https://tiktok.com/@yourhandle'),
+                        TextInput::make('pinterest')->label('Pinterest URL')->prefixIcon('heroicon-o-link')->placeholder('https://pinterest.com/yourprofile'),
+                        TextInput::make('threads')->label('Threads URL')->prefixIcon('heroicon-o-link')->placeholder('https://threads.net/@yourhandle'),
                     ])->columns(2),
 
                     Tabs\Tab::make('Hero Slides')->schema([
@@ -234,6 +237,7 @@ class ManageSettings extends Page implements HasForms
             'hero_image_1', 'hero_image_2', 'hero_image_3',
             'hero_image_1_mobile', 'hero_image_2_mobile', 'hero_image_3_mobile',
             'facebook', 'twitter', 'linkedin', 'youtube', 'instagram',
+            'tiktok', 'pinterest', 'threads',
         ];
         $existing = Setting::whereIn('key', $preserveFields)->pluck('value', 'key');
         foreach ($preserveFields as $field) {

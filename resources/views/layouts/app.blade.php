@@ -18,11 +18,14 @@
         $siteEmail    = \App\Models\Setting::get('email', 'syeds@scs-technologies.com');
         $siteAddress  = \App\Models\Setting::get('address_miami', '10125 NW 116th Way, Medley, Florida 33178');
         $footerAbout  = \App\Models\Setting::get('footer_about', 'SCS Technologies provides comprehensive telecom, IT infrastructure, security, and software solutions across the United States. MBE-Certified Â· Est. 1999.');
-        $fbUrl        = \App\Models\Setting::get('facebook', '#');
-        $twUrl        = \App\Models\Setting::get('twitter', '#');
-        $ytUrl        = \App\Models\Setting::get('youtube', '#');
-        $liUrl        = \App\Models\Setting::get('linkedin', '#');
-        $igUrl        = \App\Models\Setting::get('instagram', '#');
+        $fbUrl        = \App\Models\Setting::get('facebook');
+        $twUrl        = \App\Models\Setting::get('twitter');
+        $ytUrl        = \App\Models\Setting::get('youtube');
+        $liUrl        = \App\Models\Setting::get('linkedin');
+        $igUrl        = \App\Models\Setting::get('instagram');
+        $tkUrl        = \App\Models\Setting::get('tiktok');
+        $ptUrl        = \App\Models\Setting::get('pinterest');
+        $thUrl        = \App\Models\Setting::get('threads');
     @endphp
     <link rel="shortcut icon" href="{{ $favicon ? asset('storage/' . $favicon) : asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
@@ -128,10 +131,14 @@
                             </button>
                         </div>
                         <div class="social-icon d-flex align-items-center">
-                            <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
-                            <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
-                            <a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>
-                            <a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>
+                            @if($fbUrl)<a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>@endif
+                            @if($twUrl)<a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>@endif
+                            @if($ytUrl)<a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>@endif
+                            @if($liUrl)<a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>@endif
+                            @if($igUrl)<a href="{{ $igUrl }}"><i class="fab fa-instagram"></i></a>@endif
+                            @if($tkUrl)<a href="{{ $tkUrl }}"><i class="fab fa-tiktok"></i></a>@endif
+                            @if($ptUrl)<a href="{{ $ptUrl }}"><i class="fab fa-pinterest-p"></i></a>@endif
+                            @if($thUrl)<a href="{{ $thUrl }}"><i class="fab fa-threads"></i></a>@endif
                         </div>
                     </div>
                 </div>
@@ -158,10 +165,14 @@
                     <div class="top-right">
                         <div class="social-icon d-flex align-items-center">
                             <span>Follow Us:</span>
-                            <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
-                            <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
-                            <a href="{{ $liUrl }}"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="{{ $ytUrl }}"><i class="fa-brands fa-youtube"></i></a>
+                            @if($fbUrl)<a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>@endif
+                            @if($twUrl)<a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>@endif
+                            @if($liUrl)<a href="{{ $liUrl }}"><i class="fa-brands fa-linkedin-in"></i></a>@endif
+                            @if($ytUrl)<a href="{{ $ytUrl }}"><i class="fa-brands fa-youtube"></i></a>@endif
+                            @if($igUrl)<a href="{{ $igUrl }}"><i class="fab fa-instagram"></i></a>@endif
+                            @if($tkUrl)<a href="{{ $tkUrl }}"><i class="fab fa-tiktok"></i></a>@endif
+                            @if($ptUrl)<a href="{{ $ptUrl }}"><i class="fab fa-pinterest-p"></i></a>@endif
+                            @if($thUrl)<a href="{{ $thUrl }}"><i class="fab fa-threads"></i></a>@endif
                         </div>
                     </div>
                 </div>
@@ -313,10 +324,14 @@
                                     </div>
                                     <p class="about-text">{{ $footerAbout }}</p>
                                     <div class="gt-social style2">
-                                        <a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>
-                                        <a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>
-                                        <a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>
+                                        @if($fbUrl)<a href="{{ $fbUrl }}"><i class="fab fa-facebook-f"></i></a>@endif
+                                        @if($twUrl)<a href="{{ $twUrl }}"><i class="fab fa-twitter"></i></a>@endif
+                                        @if($ytUrl)<a href="{{ $ytUrl }}"><i class="fab fa-youtube"></i></a>@endif
+                                        @if($liUrl)<a href="{{ $liUrl }}"><i class="fab fa-linkedin-in"></i></a>@endif
+                                        @if($igUrl)<a href="{{ $igUrl }}"><i class="fab fa-instagram"></i></a>@endif
+                                        @if($tkUrl)<a href="{{ $tkUrl }}"><i class="fab fa-tiktok"></i></a>@endif
+                                        @if($ptUrl)<a href="{{ $ptUrl }}"><i class="fab fa-pinterest-p"></i></a>@endif
+                                        @if($thUrl)<a href="{{ $thUrl }}"><i class="fab fa-threads"></i></a>@endif
                                     </div>
                                 </div>
                             </div>
