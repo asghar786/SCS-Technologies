@@ -1,0 +1,5 @@
+date,decision,reasoning,expected_outcome,review_date
+2026-05-12,Use Filament v3 for admin panel,Faster to build with consistent UI and built-in auth — no need to custom-build,Rapid admin feature delivery without maintaining a custom panel,2026-06-11
+2026-05-12,Store settings as key/value rows in DB,Allows admin to change values without a code deployment,Non-technical admin can manage site content independently,2026-06-11
+2026-05-12,WhatsApp floating button placed bottom-left,Owner explicit preference,Clear WhatsApp entry point without conflicting with other fixed UI elements,2026-06-11
+2026-05-12,Social icons hidden when URL is empty or #,Prevents broken placeholder links appearing publicly,Cleaner frontend — only real social profiles are shown,2026-06-11
