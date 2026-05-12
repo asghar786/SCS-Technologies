@@ -18,14 +18,15 @@
         $siteEmail    = \App\Models\Setting::get('email', 'syeds@scs-technologies.com');
         $siteAddress  = \App\Models\Setting::get('address_miami', '10125 NW 116th Way, Medley, Florida 33178');
         $footerAbout  = \App\Models\Setting::get('footer_about', 'SCS Technologies provides comprehensive telecom, IT infrastructure, security, and software solutions across the United States. MBE-Certified Â· Est. 1999.');
-        $fbUrl        = \App\Models\Setting::get('facebook');
-        $twUrl        = \App\Models\Setting::get('twitter');
-        $ytUrl        = \App\Models\Setting::get('youtube');
-        $liUrl        = \App\Models\Setting::get('linkedin');
-        $igUrl        = \App\Models\Setting::get('instagram');
-        $tkUrl        = \App\Models\Setting::get('tiktok');
-        $ptUrl        = \App\Models\Setting::get('pinterest');
-        $thUrl        = \App\Models\Setting::get('threads');
+        $social = fn($key) => ($v = \App\Models\Setting::get($key)) && trim($v) !== '#' ? $v : null;
+        $fbUrl  = $social('facebook');
+        $twUrl  = $social('twitter');
+        $ytUrl  = $social('youtube');
+        $liUrl  = $social('linkedin');
+        $igUrl  = $social('instagram');
+        $tkUrl  = $social('tiktok');
+        $ptUrl  = $social('pinterest');
+        $thUrl  = $social('threads');
     @endphp
     <link rel="shortcut icon" href="{{ $favicon ? asset('storage/' . $favicon) : asset('assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
