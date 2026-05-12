@@ -165,6 +165,18 @@ class ManageSettings extends Page implements HasForms
                             ->helperText('Your Clarity Project ID from clarity.microsoft.com'),
                     ])->columns(2),
 
+                    Tabs\Tab::make('WhatsApp')->schema([
+                        Toggle::make('whatsapp_enabled')
+                            ->label('Enable WhatsApp Floating Button')
+                            ->helperText('Show the WhatsApp chat button on all frontend pages')
+                            ->columnSpanFull(),
+                        TextInput::make('whatsapp_number')
+                            ->label('WhatsApp Number')
+                            ->placeholder('+13059065182')
+                            ->helperText('Enter with country code, digits only or with + prefix — e.g. +13059065182')
+                            ->columnSpanFull(),
+                    ])->columns(1),
+
                     Tabs\Tab::make('Pages')->schema([
                         RichEditor::make('disclaimer')
                             ->label('Disclaimer')
